@@ -1,0 +1,12 @@
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\bin\Debug\net6.0\StockAnalyzer.Core.deps.json
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\bin\Debug\net6.0\StockAnalyzer.Core.dll
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\bin\Debug\net6.0\StockAnalyzer.Core.pdb
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.csproj.AssemblyReference.cache
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.AssemblyInfoInputs.cache
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.AssemblyInfo.cs
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.csproj.CoreCompileInputs.cache
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.dll
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\refint\StockAnalyzer.Core.dll
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\StockAnalyzer.Core.pdb
+D:\dev\dotnet\c#-10\intermediaire\c-sharp-10-asynchronous-programming\02\demos\Windows\Completed\StockAnalyzer.Core\obj\Debug\net6.0\ref\StockAnalyzer.Core.dll
