@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using StockAnalyzer.Core;
 using StockAnalyzer.Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
@@ -25,27 +27,35 @@ public partial class MainWindow : Window
 
 
 
-        private async void Search_Click(object sender, RoutedEventArgs e)
+    private async void Search_Click(object sender, RoutedEventArgs e)
+    {
+        BeforeLoadingStockData();
+
+        var getStocksTask = GetStocks();
+
+        await getStocksTask;
+
+        AfterLoadingStockData();
+    }
+
+
+    private async Task GetStocks()
+    {
+        try
         {
-            BeforeLoadingStockData();
+            var store = new DataStore();
 
-            using (var client = new HttpClient())
-            {
-                var responseTask = client.GetAsync($"{API_URL}/{StockIdentifier.Text}");
+            var responseTask = store.GetStockPrices(StockIdentifier.Text);
 
-                var response = await responseTask;
-
-                var content = await response.Content.ReadAsStringAsync();
-
-                var data = JsonConvert.DeserializeObject<IEnumerable<StockPrice>>(content);
-
-            Stocks.ItemsSource = data;
-
-            }
-
-            AfterLoadingStockData();
+            Stocks.ItemsSource = await responseTask;
+        }
+        catch(Exception ex)
+        {
+            //Notes.Text = ex.Message;
+            throw;
         }
 
+    }
 
 
 

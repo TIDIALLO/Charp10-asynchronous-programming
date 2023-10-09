@@ -30,17 +30,17 @@ public class DataStore
 
         while (await stream.ReadLineAsync() is string line)
         {
-            #region Find & Parse Stock Price from CSV
-            var segments = line.Split(',');
+                #region Find & Parse Stock Price from CSV
+                var segments = line.Split(',');
 
-            for (var i = 0; i < segments.Length; i++) segments[i] = segments[i].Trim('\'', '"');
+                for (var i = 0; i < segments.Length; i++) segments[i] = segments[i].Trim('\'', '"');
 
-            if (segments[0].ToUpperInvariant()
-                != stockIdentifier.ToUpperInvariant())
-            {
-                continue;
-            }
-            #endregion
+                if (segments[0].ToUpperInvariant()
+                    != stockIdentifier.ToUpperInvariant())
+                {
+                    continue;
+                }
+                #endregion
 
             var price = new StockPrice
             {
