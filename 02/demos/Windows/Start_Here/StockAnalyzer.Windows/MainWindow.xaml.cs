@@ -51,8 +51,7 @@ public partial class MainWindow : Window
         }
         catch(Exception ex)
         {
-            //Notes.Text = ex.Message;
-            throw;
+            Notes.Text = ex.Message;
         }
 
     }
