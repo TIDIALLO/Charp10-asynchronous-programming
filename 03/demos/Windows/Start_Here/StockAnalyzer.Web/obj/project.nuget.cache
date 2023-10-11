@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "R+0l4bzK21oLl7/loYB0bMa5GlCn2iOs+LUXW2T4jVg7v5sugL5x1Ol0PcsYUlUCb0mHZteUz/coi1BGPpU8ug==",
+  "dgSpecHash": "485cNlG2WDUygsLksErOlcVtwB77Ipge5dNVSoVZZZAYLLjkWuvQfh0qA2BmONrTdhnGCguCKUiQaKZm9c0pUQ==",
   "success": true,
   "projectFilePath": "D:\\dev\\dotnet\\c#-10\\intermediaire\\c-sharp-10-asynchronous-programming\\03\\demos\\Windows\\Start_Here\\StockAnalyzer.Web\\StockAnalyzer.Web.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\diall\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\diall\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\diall\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.23\\microsoft.windowsdesktop.app.ref.6.0.23.nupkg.sha512",
+    "C:\\Users\\diall\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.23\\microsoft.netcore.app.ref.6.0.23.nupkg.sha512",
+    "C:\\Users\\diall\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.23\\microsoft.aspnetcore.app.ref.6.0.23.nupkg.sha512",
+    "C:\\Users\\diall\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.23\\microsoft.netcore.app.host.win-x64.6.0.23.nupkg.sha512"
   ],
   "logs": []
 }

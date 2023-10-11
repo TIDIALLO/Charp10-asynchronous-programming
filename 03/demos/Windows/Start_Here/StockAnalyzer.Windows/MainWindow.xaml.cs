@@ -33,14 +33,35 @@ public partial class MainWindow : Window
         {
             BeforeLoadingStockData();
 
-            var loadLinesTask = Task.Run(() => {
-                var lines = File.ReadAllLines("StockPrices_Small.csv");
+            var loadLinesTask = Task.Run(async () => {
+                using (var stream = new StreamReader(File.OpenRead("StockPrices_Small.csv")))
+                {
+                    var lines = new List<string>();
 
-                return lines;
+                    string line;
+                    while ((line = await stream.ReadLineAsync()) != null)
+                    {
+                        lines.Add(line);
+                    }
+
+                    return lines;
+                }
             });
 
+            loadLinesTask.ContinueWith(t =>
+            {
+
+                Dispatcher.Invoke(() =>
+                {
+                    Notes.Text = t.Exception.InnerException.Message;
+                });
+
+            }, TaskContinuationOptions.OnlyOnFaulted);
+
             var processStocksTask =
-                loadLinesTask.ContinueWith((completedTask) => {
+                loadLinesTask
+                .ContinueWith((completedTask) =>
+                {
                     var lines = completedTask.Result;
 
                     var data = new List<StockPrice>();
@@ -52,17 +73,24 @@ public partial class MainWindow : Window
                         data.Add(price);
                     }
 
-                    Dispatcher.Invoke(() => {
+                    Dispatcher.Invoke(() =>
+                    {
                         Stocks.ItemsSource = data.Where(sp => sp.Identifier == StockIdentifier.Text);
                     });
-                });
+                },
+                TaskContinuationOptions.OnlyOnRanToCompletion
+            );
 
-             processStocksTask.ContinueWith(_ => {
-                Dispatcher.Invoke(() => {
+            processStocksTask.ContinueWith(_ =>
+            {
+                Dispatcher.Invoke(() =>
+                {
                     AfterLoadingStockData();
                 });
             });
         }
+
+
         catch (Exception ex)
         {
             Notes.Text = ex.Message;
