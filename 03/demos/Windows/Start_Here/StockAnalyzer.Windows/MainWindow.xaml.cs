@@ -27,26 +27,37 @@ public partial class MainWindow : Window
 
 
 
+    CancellationTokenSource cancellationTokenSource;
+
     private void Search_Click(object sender, RoutedEventArgs e)
     {
+        if (cancellationTokenSource != null)
+        {
+            // Already have an instance of the cancellation token source?
+            // This means the button has already been pressed!
+
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource = null;
+
+            Search.Content = "Search";
+            return;
+        }
+
         try
         {
+            cancellationTokenSource = new CancellationTokenSource();
+
+            cancellationTokenSource.Token.Register(() => {
+                Notes.Text = "Cancellation requested";
+            });
+
+
+            Search.Content = "Cancel"; // Button text
+
             BeforeLoadingStockData();
 
-            var loadLinesTask = Task.Run(async () => {
-                using (var stream = new StreamReader(File.OpenRead("StockPrices_Small.csv")))
-                {
-                    var lines = new List<string>();
-
-                    string line;
-                    while ((line = await stream.ReadLineAsync()) != null)
-                    {
-                        lines.Add(line);
-                    }
-
-                    return lines;
-                }
-            });
+            var loadLinesTask =
+                SearchForStocks(cancellationTokenSource.Token);
 
             loadLinesTask.ContinueWith(t =>
             {
@@ -56,7 +67,8 @@ public partial class MainWindow : Window
                     Notes.Text = t.Exception.InnerException.Message;
                 });
 
-            }, TaskContinuationOptions.OnlyOnFaulted);
+            },
+                TaskContinuationOptions.OnlyOnFaulted);
 
             var processStocksTask =
                 loadLinesTask
@@ -86,19 +98,47 @@ public partial class MainWindow : Window
                 Dispatcher.Invoke(() =>
                 {
                     AfterLoadingStockData();
+
+                    cancellationTokenSource = null;
+
+                    Search.Content = "Search";
                 });
             });
         }
-
-
         catch (Exception ex)
         {
             Notes.Text = ex.Message;
         }
         finally
         {
-            AfterLoadingStockData();
+
         }
+    }
+
+
+    private static Task<List<string>>
+    SearchForStocks(CancellationToken cancellationToken)
+    {
+        return Task.Run(async () =>
+        {
+            using (var stream = new StreamReader(File.OpenRead("StockPrices_Small.csv")))
+            {
+                var lines = new List<string>();
+
+                string line;
+                while ((line = await stream.ReadLineAsync()) != null)
+                {
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
+                    lines.Add(line);
+                }
+
+                return lines;
+            }
+        }, cancellationToken);
     }
 
     private async Task GetStocks()
